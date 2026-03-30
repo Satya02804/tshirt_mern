@@ -10,8 +10,7 @@
   ],
   "functions": {
     "api/index.js": {
-      "includeFiles": "backend/**",
-      "runtime": "nodejs20.x"
+      "includeFiles": "backend/**"
     }
   }
 }

@@ -13,7 +13,7 @@ const sequelize = new Sequelize(
         dialect: 'mysql',
         logging: process.env.APP_ENV === 'development' ? console.log : false,
         pool: {
-            max: 5,
+            max: 1,
             min: 0,
             acquire: 30000,
             idle: 10000
