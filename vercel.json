@@ -1,6 +1,7 @@
 {
   "version": 2,
   "outputDirectory": ".next",
+  "buildCommand": "npm run build",
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -9,7 +10,8 @@
   ],
   "functions": {
     "api/index.js": {
-      "includeFiles": "backend/**"
+      "includeFiles": "backend/**",
+      "runtime": "nodejs20.x"
     }
   }
 }
