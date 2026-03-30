@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-light: #3b82f6;
+  --color-primary: #1e40af;
+  --color-primary-dark: #1e3a8a;
+  --color-secondary: #64748b;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-bg-primary: #f8fafc;
+  --color-bg-secondary: #ffffff;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #64748b;
+  --color-border: #e2e8f0;
+
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
+
+@layer utilities {
+  .shimmer {
+    animation: shimmer 2.5s infinite;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.5),
+      transparent
+    );
+  }
+}
+
+@layer base {
+  :root {
+    --transition: all 0.3s ease-in-out;
+  }
+
+  .dark {
+    --color-bg-primary: #0f172a;
+    --color-bg-secondary: #1e293b;
+    --color-text-primary: #f1f5f9;
+    --color-text-secondary: #94a3b8;
+    --color-border: #334155;
+    --color-primary-light: #60a5fa;
+    --color-primary: #3b82f6;
+    --color-primary-dark: #2563eb;
+  }
+
+  html {
+    @apply overflow-x-hidden;
+  }
+
+  body {
+    @apply bg-bg-primary text-text-primary min-h-screen min-w-[320px] m-0 p-0 overflow-x-hidden;
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  a {
+    @apply font-medium text-primary no-underline transition-all duration-300;
+  }
+
+  a:hover {
+    @apply text-primary-light;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply m-0 font-semibold leading-tight tracking-tight;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply rounded-lg border border-transparent px-5 py-2.5 text-sm font-semibold text-white bg-primary cursor-pointer transition-all duration-300;
+  }
+
+  .btn:hover {
+    @apply bg-primary-light shadow-md;
+  }
+
+  .btn:focus, .btn:focus-visible {
+    @apply outline-2 outline-primary outline-offset-2;
+  }
+
+  .input-field {
+    @apply rounded-lg border border-border p-2.5 transition-all duration-300 w-full;
+    color: inherit;
+    font: inherit;
+  }
+
+  .input-field:focus {
+    @apply outline-none border-primary ring-4 ring-primary/10;
+  }
+
+  /* Dashboard Layout */
+  .dashboard-container {
+    @apply flex min-h-[calc(100vh-60px)] bg-bg-primary;
+  }
+
+  .dashboard-sidebar {
+    @apply w-[280px] bg-bg-secondary border-r border-border shadow-sm transition-all overflow-y-auto;
+  }
+
+  .dashboard-content {
+    @apply flex-1 p-8 overflow-y-auto;
+  }
+
+  /* Stats Card */
+  .stat-card {
+    @apply bg-bg-secondary border border-border rounded-xl p-6 transition-all shadow-sm;
+  }
+
+  .stat-card:hover {
+    @apply shadow-md border-primary-light -translate-y-1;
+  }
+
+  .stat-card-icon {
+    @apply flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary text-2xl mb-4;
+  }
+
+  .stat-card-value {
+    @apply text-4xl font-bold text-text-primary mb-2;
+  }
+
+  .stat-card-label {
+    @apply text-sm text-text-secondary font-medium;
+  }
+
+  /* Role Badge */
+  .role-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold whitespace-nowrap;
+  }
+
+  .role-badge.admin {
+    @apply bg-primary/10 text-primary-dark;
+  }
+
+  .role-badge.manager {
+    @apply bg-success/10 text-success;
+  }
+
+  .role-badge.customer {
+    @apply bg-secondary/10 text-secondary;
+  }
+
+  /* Permission Chip */
+  .permission-chip {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded text-[13px] font-medium bg-primary/8 text-primary border border-primary/20;
+  }
+
+  .permission-chip.active {
+    @apply bg-success/10 text-success border-success/30;
+  }
+
+  /* Section Title */
+  .section-title {
+    @apply text-2xl font-bold text-text-primary mb-6 pb-3 border-b-2 border-border;
+  }
+
+  /* Modal/Dialog */
+  .modal-backdrop {
+    @apply fixed inset-0 bg-black/50 flex items-center justify-center z-[1000];
+  }
+
+  .modal-content {
+    @apply bg-bg-secondary rounded-xl shadow-lg max-w-[500px] w-[90%] p-8;
+  }
+
+  /* Loading State */
+  .loading {
+    @apply flex items-center justify-center min-h-[300px];
+  }
+
+  .loading-spinner {
+    @apply w-10 h-10 border-4 border-border border-t-primary rounded-full animate-spin;
+  }
+
+  /* Grid Utilities */
+  .grid-2 {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-6;
+  }
+
+  .grid-3 {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  .grid-4 {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6;
+  }
+}

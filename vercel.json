@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api"
+    }
+  ],
+  "functions": {
+    "api/index.js": {
+      "runtime": "vercel-node@latest",
+      "includeFiles": [
+        "backend/src/**",
+        "backend/public/**",
+        "backend/.env.production"
+      ]
+    }
+  }
+}
